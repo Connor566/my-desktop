@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
+    <link rel="stylesheet" href="https://www.webglearth.com/v2/api.css">
 </head>
 <body onload="startTime()">
     <div class="container">
@@ -17,7 +18,7 @@
         </div>
         <div class="main">
             <div class="widget">
-                <h3>Widget 01</h3>
+                <h3>Notepad</h3>
                 <div class="notepad">
                     <textarea id="note-area" name="message" rows="20" cols="40"></textarea>
                     <p>
@@ -26,7 +27,8 @@
                 </div>
             </div>
             <div class="widget">
-                <h3>Widget 02</h3>
+                <h3>Globe</h3>
+                <div id="earthWidget"></div>
             </div>
             <div class="widget">
                 <h3>Widget 03</h3>
@@ -57,5 +59,25 @@
         localStorage.setItem("notes", currentNotes);
     });
 </script>
+<script src="https://www.webglearth.com/v2/api.js"></script>
+<script>
+    window.addEventListener("load", function () {
+        var earth = new WE.map('earthWidget', {
+            center: [20, 0],
+            zoom: 2,
+            dragging: true,
+            scrollWheelZoom: true
+        });
+
+        WE.tileLayer(
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+                attribution: '© OpenStreetMap contributors'
+            }
+        ).addTo(earth);
+    });
+</script>
+
+
 </html>
 
